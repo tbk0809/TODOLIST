@@ -1,37 +1,27 @@
 //build a server first 
 //localhost  3000
+//import the tools 
 
 const express = require('express');//for the server 
-const mysql = require('mysql2');//for the sql
-//import the tools 
+const cors = require('cors');
+const path = require('path');
+
+require('./database.js');
+const todorouters=require("./routes.js");
+
 //the first one is must ,second one can be any other language wanna interact with
 
 const app=express();//create the server, the previous is the material , this one use material to create the server actually
 const port=3000;//where the server is,localhost 3000
 
+app.use(cors());
 app.use(express.json());
+app.use(express.static('public'));
 //server understand the json files from website
+app.use('/todos', todorouters);
+// This tells the server: "If someone goes to /todos, let the router handle it!"
 
-const db=mysql.createConnection({//createConnection ,a tool to connect with mysql
 
-  host: 'localhost',
-  user: `root`,
-  password: `TBK@89boonkai`,
-  database: `tododb`
-});
-
-db.connect((err)=>{
-  if(err){
-    console.error("unable to connect");
-  }
-  else{
-    console.log("successfully connected");
-  }
-});
-
-app.get('/', (req, res) => {
-  res.send('The server is up and running!');
-});
 
 // 4. Opening the Doors
 app.listen(port, () => {
