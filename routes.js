@@ -7,12 +7,12 @@ router.get('/',(req,res)=>{//'/'for the visitor,req=request to visit, res =res l
 
   const sql="SELECT * from todos";//sql code
   db.query(sql,(err,results)=>{
-    if(err){
-      return res.status(500).send("Database error");//res.status(500)is a web code for error,send("database error")=human message
-    }
+    if (err) {
+  return res.status(500).json({ error: "Database error" });
+}
       else{
-      res.json(results);//to access the result, like the actual way to see the message , we need to convert it to json files so we can see the results
-      }
+      res.json(results);
+    }
   });
 });
 router.post('/',(req,res)=>{
@@ -20,11 +20,11 @@ router.post('/',(req,res)=>{
   const title=req.body.title;//the text that user type at the frontend;
   const sql="INSERT INTO todos (title) VALUES (?)";
   db.query(sql,[title],(err,results)=>{
-    if(err){
-      return res.status(500).send("Database error");//res.status(500)is a web code for error,send("database error")=human message  
+        if (err) {
+      return res.status(500).json({ error: "Database error" });
     }
     else{
-      res.json("tasks added succesfully");
+      res.json({ message: "tasks added succesfully" });
     }
   });
 });
@@ -34,10 +34,10 @@ router.delete('/:id',(req,res)=>{
    const sql="DELETE FROM todos WHERE id=?";
   db.query(sql,[id],(err,results)=>{
     if(err){
-      return res.status(500).send("Database error");//res.status(500)is a web code for error,send("database error")=human message  
+      return res.status(500).json({ error: "Database error" });
     }
     else{
-      res.json("tasks deleted succesfully");
+      res.json({ message: "tasks deleted succesfully" });
     }
   });
 });
@@ -48,10 +48,10 @@ router.patch('/:id',(req,res)=>{
    const sql="UPDATE todos SET completed = TRUE WHERE id=?";//the ?is a blank space/variable that handle the value/id from user 
   db.query(sql,[id],(err,results)=>{
     if(err){
-      return res.status(500).send("Database error");//res.status(500)is a web code for error,send("database error")=human message  
+      return res.status(500).json({ error: "Database error" });
     }
     else{
-      res.json("tasks updated succesfully");
+      res.json({ message: "tasks updated succesfully" });
     }
   });
 });

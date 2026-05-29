@@ -4,18 +4,16 @@
 
 const express = require('express');//for the server 
 const cors = require('cors');
-const path = require('path');
+const path = require('path');//Helps you work with file system paths safely.//better to have
 
 require('./database.js');
 const todorouters=require("./routes.js");
 
-//the first one is must ,second one can be any other language wanna interact with
-
 const app=express();//create the server, the previous is the material , this one use material to create the server actually
 const port=3000;//where the server is,localhost 3000
 
-app.use(cors());
-app.use(express.json());
+app.use(cors());//allow the server from other website even the frontend(e.g., http://localhost:5173) and backend(http://localhost:3000) is different origins
+app.use(express.json());//what user inpit,It translates the website's raw data into a language your backend code can actually use.
 app.use(express.static('public'));
 //server understand the json files from website
 app.use('/todos', todorouters);
