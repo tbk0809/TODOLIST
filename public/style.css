@@ -1,0 +1,56 @@
+body{
+  background-color: #e2eb5c;
+}
+
+.header{
+  text-align: center;
+  font-family: 'Arial', sans-serif;
+  animation:blur 1s ease-out infinite;
+  text-shadow: 0 0 5px #1c9be0, 0 0 10px #1c9be0, 0 0 15px #1c9be0, 0 0 20px #1c9be0;
+
+}
+
+@keyframes blur {
+  0% {
+    filter: blur(0px);
+  }
+  50% {
+    filter: blur(2px);
+  }
+  100% {
+    filter: blur(0px);
+  }
+}
+
+
+
+
+.para{
+  text-align: center;
+  font-family: 'Arial', sans-serif;
+}
+
+.button-container{
+  display:flex;
+  flex-direction:row;
+  justify-content: space-between;
+}
+
+.btn{
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  background-color: #007BFF;
+  color: white;
+  transition: background-color 0.3s ease;
+  transition: transform 0.2s ease;
+  border-radius: 10px;
+
+}
+
+.btn:hover {
+ background-color: #0056b3;
+  transform: scale(1,1.05);
+
+}
+
